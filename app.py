@@ -12,7 +12,7 @@ config = oci.config.from_file()
 
 doc_client = oci.ai_document.AIServiceDocumentClient(config)
 
-
+sddf
 
 @app.post("/extract")
 async def extract(file: UploadFile = File(...)):
