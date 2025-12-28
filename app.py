@@ -54,8 +54,8 @@ async def extract(file: UploadFile = File(...)):
                 data[field_name] = field_value
                 data_confidence[field_name] = field_confidence
 
-    data['Items'] = []
-    
+
+
     result = {
         "confidence": "1",
         "data": data,
@@ -64,8 +64,6 @@ async def extract(file: UploadFile = File(...)):
 
     save_inv_extraction(result)
 
-    # TODO: call to save_inv_extraction(result)    ( no need to change this function)
-    
     return result
 
 
