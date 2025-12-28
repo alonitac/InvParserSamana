@@ -1,3 +1,4 @@
+import time
 from fastapi import FastAPI, UploadFile, File
 import oci
 import base64
@@ -20,6 +21,8 @@ async def extract(file: UploadFile = File(...)):
     # Base64 encode PDF
     encoded_pdf = base64.b64encode(pdf_bytes).decode("utf-8")
 
+    
+
     document = oci.ai_document.models.InlineDocumentDetails(
         data=encoded_pdf
     )
@@ -38,15 +41,40 @@ async def extract(file: UploadFile = File(...)):
 
     response = doc_client.analyze_document(request)
 
+    data = {}
+    data_confidence = {}
+
+    for page in response.data.pages:
+        if page.document_fields:
+            for field in page.document_fields:
+                field_name = field.field_label.name
+                field_confidence = field.field_label.confidence if field.field_label.confidence else None
+                field_value = field.field_value.text
+            
+                data[field_name] = field_value
+                data_confidence[field_name] = field_confidence
+
+    data['Items'] = []
+    
     result = {
-        "confidence": "TBD...",
-        "data": "TBD...",
-        "dataConfidence": "TBD..."
+        "confidence": "1",
+        "data": data,
+        "dataConfidence": data_confidence
     }
+
+    save_inv_extraction(result)
 
     # TODO: call to save_inv_extraction(result)    ( no need to change this function)
     
-    return response
+    return result
+
+
+
+@app.get('/health')
+def health():
+    return {'status': 'ok'}
+
+
 
 
 if __name__ == "__main__":
