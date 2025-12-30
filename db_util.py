@@ -19,7 +19,7 @@ def init_db():
         cursor = conn.cursor()
         
         cursor.execute("""
-            CREATE TABLE IF NOT EXISTS invoices (
+            CREATE TABLE invoices (
                 InvoiceId TEXT PRIMARY KEY,
                 VendorName TEXT,
                 InvoiceDate TEXT,
