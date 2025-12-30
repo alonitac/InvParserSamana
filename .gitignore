@@ -8,6 +8,8 @@ venv
 .env.test.local
 .env.production.local
 
+mysecret
+
 *.db
 *.pt
 
