@@ -72,11 +72,12 @@ async def extract(file: UploadFile = File(...)):
 def health():
     return {'status': 'ok'}
 
-
+def fo():
+    print("hello world")
 
 
 if __name__ == "__main__":
     import uvicorn
 
     init_db()
-    uvicorn.run(app, host="0.0.0.0", port=8080)
+    uvicorn.run(app, host="0.0.0.0", port=8081)
