@@ -74,10 +74,13 @@ def health():
 
 def fo():
     print("hello world")
+    
+def boo():
+    print("boo")
 
 
 if __name__ == "__main__":
     import uvicorn
 
     init_db()
-    uvicorn.run(app, host="0.0.0.0", port=8081)
+    uvicorn.run(app, host="0.0.0.0", port=8082)
