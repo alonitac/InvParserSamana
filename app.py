@@ -72,6 +72,9 @@ async def extract(file: UploadFile = File(...)):
 def health():
     return {'status': 'ok'}
 
+def fo():
+    print("hello world")
+    
 def boo():
     print("boo")
 

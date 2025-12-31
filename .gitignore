@@ -9,7 +9,6 @@ venv
 .env.production.local
 
 mysecret
-
 *.db
 *.pt
 
